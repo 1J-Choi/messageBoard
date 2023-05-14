@@ -20,8 +20,12 @@
         .input-group{
             margin-bottom : 15px;
         }
-        .img-div{
-            margin-bottom : 10px;
+        .input-group-textBox{
+            margin-bottom : 15px;
+            height: 350px;
+        }
+        .form-control{
+            height: 97%;
         }
         .fieldError{
             color: #bd2130;
@@ -43,7 +47,7 @@
         </div>
         <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="fieldError">Incorrect data</p>
 
-        <div class="input-group">
+        <div class="input-group-textBox">
             <div class="input-group-prepend">
                 <span class="input-group-text">내용</span>
             </div>

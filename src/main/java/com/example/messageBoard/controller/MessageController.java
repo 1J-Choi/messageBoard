@@ -19,7 +19,7 @@ public class MessageController {
 
     @GetMapping(value = "/message/new")
     public String messageForm(Model model){
-        model.addAttribute("messageDto", new MessageFormDto());
+        model.addAttribute("messageFormDto", new MessageFormDto());
         return "message/messageForm";
     }
 

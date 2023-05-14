@@ -11,12 +11,21 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-public class MessageFormDto {
+@Builder
+public class MessageDto {
     private Long id;
 
-    @NotBlank(message = "제목을 입력하세요.")
     private String title;
 
-    @NotBlank(message = "내용을 입력하세요.")
     private String contents;
+
+    private Member member;
+
+    private static ModelMapper modelMapper = new ModelMapper();
+
+    public Message createMessage(){ return modelMapper.map(this, Message.class); }
+
+    public static MessageFormDto of(Message message){
+        return modelMapper.map(message, MessageFormDto.class);
+    }
 }

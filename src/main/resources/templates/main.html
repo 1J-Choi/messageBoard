@@ -9,11 +9,25 @@
 </th:block>
 
 <div layout:fragment="content">
-
     <th:block>
-        <h2>안녕!</h2>
+        <h2>게시판에 오신 것을 환영합니다.</h2>
+        <h4>욕설, 비방, 악플 금지</h4>
     </th:block>
 
+    <div class="row">
+        <th:block th:each="message : ${messages}">
+            <div class="col-md-4-margin">
+                <div class="card">
+                    <a th:href="'/message/' + ${message.id}" class="text-dark">
+                        <div class="card-body">
+                            <h4 class="card-title">[[${message.title}]]</h4>
+                            <p class="card-text">[[${message.memberNick}]]</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </th:block>
+    </div>
 
 </div>
 </html>

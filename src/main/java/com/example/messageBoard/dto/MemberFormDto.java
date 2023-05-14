@@ -1,6 +1,7 @@
 package com.example.messageBoard.dto;
 
 import com.example.messageBoard.constant.Role;
+import com.example.messageBoard.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;

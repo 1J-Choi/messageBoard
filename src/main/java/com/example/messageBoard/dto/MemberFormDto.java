@@ -2,9 +2,11 @@ package com.example.messageBoard.dto;
 
 import com.example.messageBoard.constant.Role;
 import com.example.messageBoard.entity.Member;
+import com.example.messageBoard.entity.Message;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.modelmapper.ModelMapper;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -27,4 +29,5 @@ public class MemberFormDto {
 
     @NotNull(message = "계정 종류 선택은 필수 입력 값입니다.")
     private Role role;
+
 }

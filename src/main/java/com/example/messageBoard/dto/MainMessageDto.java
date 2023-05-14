@@ -15,5 +15,7 @@ public class MainMessageDto {
 
     private String title;
 
+    private String contents;
+
     private String memberNick;
 }

@@ -13,7 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
+import javax.persistence.EntityExistsException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,5 +56,48 @@ public class MessageService {
             mainMessageDtoList.add(dto);
         }
         return mainMessageDtoList;
+    }
+
+    public List<MainMessageDto> findMainMessageDtoById(Long id){
+        List<Message> all = messageRepository.findAllByMember_Id(id);
+        List<MainMessageDto> mainMessageDtoList = new ArrayList<>();
+
+        for(Message message : all){
+            MainMessageDto dto = MainMessageDto.builder()
+                    .id(message.getId())
+                    .title(message.getTitle())
+                    .contents(message.getContents())
+                    .memberNick(message.getMember().getNick())
+                    .build();
+
+            mainMessageDtoList.add(dto);
+        }
+        return mainMessageDtoList;
+    }
+
+    @Transactional(readOnly = true)
+    public MessageDto getMessageDtl(Long messageId){
+        Message message = messageRepository.findById(messageId).orElseThrow(EntityExistsException::new);
+        MessageDto messageDto = MessageDto.of(message);
+        return messageDto;
+    }
+
+    @Transactional(readOnly = true)
+    public boolean validateMessage(Long messageId, String email){
+        Member curMember = memberRepository.findByEmail(email);
+        Message message = messageRepository.findById(messageId)
+                .orElseThrow(EntityExistsException::new);
+        Member savedMember = message.getMember();
+
+        if(!StringUtils.equals(curMember.getEmail(), savedMember.getEmail())){
+            return false;
+        }
+        return true;
+    }
+
+    public void deleteMessage(Long messageId) {
+        Message message = messageRepository.findById(messageId)
+                .orElseThrow(EntityExistsException::new);
+        messageRepository.delete(message);
     }
 }

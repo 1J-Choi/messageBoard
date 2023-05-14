@@ -19,4 +19,5 @@ public class MessageFormDto {
 
     @NotBlank(message = "내용을 입력하세요.")
     private String contents;
+
 }

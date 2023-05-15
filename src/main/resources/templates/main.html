@@ -9,9 +9,9 @@
 </th:block>
 
 <div layout:fragment="content">
-    <th:block>
-        <h2>게시판에 오신 것을 환영합니다.</h2>
-        <h4>욕설, 비방, 악플 금지</h4>
+    <th:block th:value="${mainTextFormDto}">
+        <h2>[[${mainTextFormDto.title}]]</h2>
+        <h4>[[${mainTextFormDto.subText}]]</h4>
     </th:block>
 
     <div class="row">

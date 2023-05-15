@@ -2,7 +2,9 @@ package com.example.messageBoard.controller;
 
 
 import com.example.messageBoard.dto.MainMessageDto;
+import com.example.messageBoard.dto.MainTextFormDto;
 import com.example.messageBoard.entity.Message;
+import com.example.messageBoard.service.MainTextService;
 import com.example.messageBoard.service.MessageService;
 import groovy.transform.builder.Builder;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +25,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MainController {
     private final MessageService messageService;
+    private final MainTextService mainTextService;
     @GetMapping(value = {"/"})
     public String main(Model model) {
 
         List<MainMessageDto> messages = messageService.findMainMessageDto();
-
+        MainTextFormDto mainTextFormDto = mainTextService.findMainTextDto();
+        model.addAttribute("mainTextFormDto", mainTextFormDto);
         model.addAttribute("messages", messages);
         return "main";
     }

@@ -1,5 +1,6 @@
 package com.example.messageBoard.entity;
 
+import com.example.messageBoard.dto.MainTextFormDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +25,10 @@ public class MainText {
         mainText.setTitle("게시판에 오신 것을 환영합니다.");
         mainText.setSubText("욕설, 비방, 음란물 게시 금지!");
         return mainText;
+    }
+
+    public void updateMainText(MainTextFormDto mainTextFormDto){
+        this.title = mainTextFormDto.getTitle();
+        this.subText = mainTextFormDto.getSubText();
     }
 }

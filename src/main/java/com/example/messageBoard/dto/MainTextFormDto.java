@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 @Builder
 public class MainTextFormDto {
+
+    private Long id;
     private String title;
     private String subText;
 }
